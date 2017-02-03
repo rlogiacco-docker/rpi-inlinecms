@@ -1,11 +1,10 @@
 rpi-inlinecms
 ==============
 
-[![](https://images.microbadger.com/badges/image/rlogiacco/rpi-inlinecms.svg)](https://microbadger.com/images/rlogiacco/rpi-inlinecms "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/rlogiacco/rpi-inlinecms.svg)](https://microbadger.com/images/rlogiacco/rpi-inlinecms "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/rlogiacco/rpi-inlinecms.svg)](https://microbadger.com/images/rlogiacco/rpi-inlinecms) [![](https://images.microbadger.com/badges/version/rlogiacco/rpi-inlinecms.svg)](https://microbadger.com/images/rlogiacco/rpi-inlinecms)
 
 Based on Alpine for ARM this image delivers a fully configured and ready to run instance of [InlineCMS](http://inlinecms.com/) based on Apache HTTP Server and PHP5.
 
-[![Latest](https://badge.imagelayers.io/rlogiacco/rpi-inlinecms.svg)](https://imagelayers.io/?images=rlogiacco/rpi-inlinecms:latest 'latest')
 
 # Description
 You should run this container on the background and mount a volume to make the CMS content persistent.
