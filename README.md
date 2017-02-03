@@ -1,7 +1,7 @@
 rpi-inlinecms
 ==============
 
-[![dockeri.co](http://dockeri.co/image/rlogiacco/rpi-inlinecms)](https://registry.hub.docker.com/u/rlogiacco/rpi-inlinecms/)
+[![](https://images.microbadger.com/badges/image/rlogiacco/rpi-inlinecms.svg)](https://microbadger.com/images/rlogiacco/rpi-inlinecms "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/rlogiacco/rpi-inlinecms.svg)](https://microbadger.com/images/rlogiacco/rpi-inlinecms "Get your own version badge on microbadger.com")
 
 Based on Alpine for ARM this image delivers a fully configured and ready to run instance of [InlineCMS](http://inlinecms.com/) based on Apache HTTP Server and PHP5.
 

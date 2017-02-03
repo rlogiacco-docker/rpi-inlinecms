@@ -25,6 +25,8 @@ COPY httpd.conf /etc/apache2/
 
 EXPOSE 80 443
 
+LABEL org.label-schema.vcs-url="https://github.com/rlogiacco-docker/rpi-inlinecms"
+
 VOLUME /var/www/localhost/htdocs/data
 VOLUME /var/www/localhost/htdocs/theme
 
