@@ -25,6 +25,7 @@ COPY httpd.conf /etc/apache2/
 
 EXPOSE 80 443
 
-VOLUME /var/www/localhost/htdocs
+VOLUME /var/www/localhost/htdocs/data
+VOLUME /var/www/localhost/htdocs/theme
 
 CMD httpd -D FOREGROUND
