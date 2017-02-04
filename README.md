@@ -15,27 +15,20 @@ Includes:
  - PHP5
  - InlineCMS
  
-## Volumes
-Exports a volume on `/var/www/localhost/htdocs/data`, where your CMS content is stored, and on `/var/www/localhost/htdocs/theme`, where your HTML template content is stored.
-You should mount the volume `/var/www/localhost/htdocs/data` to make it permanent. Optionally, if you wish to customize the templates used as theme, you can also mount `/var/www/localhost/htdocs/theme`.
+# Volumes
+Exports a volume on `/var/inlinecms`, where your CMS content and HTML templates are stored.
 
 If you wish to customize the Apache HTTP Server configuration you can do so by providing a replacement mount for `/etc/apache2/httpd.conf` (global configuration) or adding files under `/etc/apache2/conf.d/` (all included by default).
  
-## Ports
-Two ports are exposed:
+# Ports
 
  - 80: default HTTP port
- - 443: default HTTPS port (disabled)
 
-Remember to map the ports to the docker host on run.
-
-
-# How to run the container
-## Using docker
-To get the container up and running, run:
+# Run the container using docker
+To get the container up and running:
  
 ```
-sudo docker run -d -p 8080:80 sudo docker run --name inlinecms -v inlinecms:/var/www/localhost/htdocs/data -d rlogiacco/rpi-inlinecms
+sudo docker run -d -p 8080:80 sudo docker run --name inlinecms -v inlinecms:/var/inlinecms -d rlogiacco/rpi-inlinecms
 ```
 
 

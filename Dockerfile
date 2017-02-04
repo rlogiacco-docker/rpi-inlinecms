@@ -3,16 +3,23 @@ FROM armhf/alpine
 LABEL maintainer "rlogiacco@gmail.com"
 
 ENV INLINECMS_VERSION 1.0.1
+ENV INLINECMS_STORE /var/inlinecms
 ENV HTDOCS /var/www/localhost/htdocs
 
 RUN apk add --no-cache apache2 php5-apache2 php5-json php5-gd
 
-RUN wget http://inlinecms.com/files/inlinecms-${INLINECMS_VERSION}.zip -P /tmp \
+RUN mkdir -p ${INLINECMS_STORE} \
+ && wget http://inlinecms.com/files/inlinecms-${INLINECMS_VERSION}.zip -P /tmp \
  && unzip -d ${HTDOCS} /tmp/inlinecms-${INLINECMS_VERSION}.zip \
- && rm -f /tmp/inlinecms-${INLINECMS_VERSION}.zip \
+ && mv ${HTDOCS}/data ${INLINECMS_STORE} \
+ && mv ${HTDOCS}/theme ${INLINECMS_STORE} \
+ && mv ${HTDOCS}/upload ${INLINECMS_STORE} \
+ && ln -s ${INLINECMS_STORE}/data ${HTDOCS}/data \
+ && ln -s ${INLINECMS_STORE}/theme ${HTDOCS}/theme \
+ && ln -s ${INLINECMS_STORE}/upload ${HTDOCS}/upload \
  && wget http://inlinecms.com/files/inlinecms.template.zip -P /tmp \
- && unzip -d ${HTDOCS}/theme /tmp/inlinecms.template.zip \
- && rm -f /tmp/inlinecms.template.zip
+ && unzip -d ${INLINECMS_STORE}/theme /tmp/inlinecms.template.zip \
+ && rm -f /tmp/*
 
 RUN touch /var/log/apache2/access.log \
  && touch /var/log/apache2/error.log \
@@ -23,11 +30,10 @@ RUN touch /var/log/apache2/access.log \
 
 COPY httpd.conf /etc/apache2/
 
-EXPOSE 80 443
+EXPOSE 80
+
+VOLUME /var/inlinecms
 
 LABEL org.label-schema.vcs-url="https://github.com/rlogiacco-docker/rpi-inlinecms"
-
-VOLUME /var/www/localhost/htdocs/data
-VOLUME /var/www/localhost/htdocs/theme
 
 CMD httpd -D FOREGROUND
