@@ -1,13 +1,16 @@
-FROM armhf/alpine
+FROM multiarch/alpine:armhf-v3.5
 
-LABEL maintainer "rlogiacco@gmail.com"
+LABEL maintainer "Roberto Lo Giacco <rlogiacco@gmail.com>"
+LABEL org.label-schema.vcs-url "https://github.com/rlogiacco-docker/rpi-inlinecms"
 
-ENV INLINECMS_VERSION 1.0.1
-ENV INLINECMS_STORE /var/inlinecms
-ENV HTDOCS /var/www/localhost/htdocs
+ARG INLINECMS_VERSION=1.0.1
 
 RUN apk add --no-cache apache2 php5-apache2 php5-json php5-gd
 
+ENV INLINECMS_VERSION=$INLINECMS_VERSION \
+    INLINECMS_STORE=/var/inlinecms \
+    HTDOCS=/var/www/localhost/htdocs
+    
 RUN mkdir -p ${INLINECMS_STORE} \
  && wget http://inlinecms.com/files/inlinecms-${INLINECMS_VERSION}.zip -P /tmp \
  && unzip -d ${HTDOCS} /tmp/inlinecms-${INLINECMS_VERSION}.zip \
@@ -33,7 +36,5 @@ COPY httpd.conf /etc/apache2/
 EXPOSE 80
 
 VOLUME /var/inlinecms
-
-LABEL org.label-schema.vcs-url="https://github.com/rlogiacco-docker/rpi-inlinecms"
 
 CMD httpd -D FOREGROUND
